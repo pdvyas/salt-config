@@ -5,7 +5,7 @@ postfix:
     - require:
       - pkg: postfix
       - file: /etc/postfix/main.cf
-      - file: /etc/aliases
+      # - file: /etc/aliases
     - watch:
       - file: /etc/postfix/main.cf
 
