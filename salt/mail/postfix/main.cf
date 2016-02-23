@@ -1,0 +1,61 @@
+
+#PUPPET
+# See /usr/share/postfix/main.cf.dist for a commented, more complete version
+#smtpd_banner = $myhostname ESMTP #$mail_name (Debian/GNU)
+biff = no
+
+# appending .domain is the MUA's job.
+append_dot_mydomain = no
+
+# Uncomment the next line to generate "delayed mail" warnings
+#delay_warning_time = 4h
+
+myhostname = {{ salt['grains.get']('fqdn') }}
+alias_maps = hash:/etc/aliases
+myorigin = {{ salt['grains.get']('fqdn') }}
+mydestination = {{ salt['grains.get']('fqdn') }}
+
+# smtpd_sasl_auth_enable = yes
+# smtpd_sasl_type = dovecot
+# smtpd_sasl_path = private/auth
+# smtpd_sasl_security_options = noanonymous
+# smtpd_tls_auth_only = yes
+
+# smtpd_tls_cert_file = /etc/letsencrypt/live/storyinmemo.com/fullchain.pem
+# smtpd_tls_key_file = /etc/letsencrypt/live/storyinmemo.com/privkey.pem
+# smtpd_tls_security_level = may
+# smtpd_tls_loglevel = 1
+# smtpd_tls_protocols = !SSLv2, !SSLv3
+# smtpd_tls_ciphers = medium
+# smtp_tls_protocols = !SSLv2, !SSLv3
+# smtp_tls_ciphers = medium
+
+#relayhost = 
+mynetworks = 127.0.0.0/8
+mailbox_size_limit = 0
+recipient_delimiter = +
+inet_interfaces = all
+home_mailbox = Maildir/
+
+#Spammage
+smtpd_delay_reject = yes
+smtpd_helo_required = yes
+# smtpd_sender_restrictions = hash:/etc/postfix/access
+
+smtpd_client_restrictions = 
+    reject_rbl_client cbl.abuseat.org
+    permit
+
+smtpd_helo_restrictions = 
+    permit_mynetworks,
+    reject_invalid_hostname,
+    reject_non_fqdn_hostname,
+    permit
+
+smtpd_recipient_restrictions =
+    permit_sasl_authenticated,
+    permit_mynetworks,
+    reject_unauth_destination,
+#     check_sender_access hash:/etc/postfix/access
+#     check_policy_service unix:private/greylist
+#     check_policy_service inet:127.0.0.1:10023
