@@ -1,5 +1,5 @@
 base:
   '*':
-    - common.users
+    - common.*
   'test.lab.pd.io':
     - mail.postfix
