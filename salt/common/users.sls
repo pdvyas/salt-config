@@ -12,7 +12,7 @@
     - mode: '0644'
     - contents: |
         [user]
-          name = {{ pillar['users'][user]['commonname'] }}
+          name = {{ pillar['users'][user]['common_name'] }}
           email = {{ pillar['users'][user]['email'] }}
 /home/{{ user }}/.ssh:
   file.directory:
