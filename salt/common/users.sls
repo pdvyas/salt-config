@@ -24,7 +24,7 @@
     - user: {{ user }}
     - mode: '0600'
     - contents: |
-        {%- for key in pillar['users'][user]['public_key'] %}
+        {%- for key in pillar['users'][user]['public_keys'] %}
         {{ key }}
         {%- endfor %}
 {% endfor %}
