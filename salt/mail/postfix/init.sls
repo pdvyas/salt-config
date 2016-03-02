@@ -16,11 +16,11 @@ postfix:
     - require:
       - pkg: postfix
 
-# /etc/aliases:
-#   file.managed:
-#     - contents_pillar: aliases
-#     - require:
-#       - pkg: postfix
+/etc/aliases:
+  file.managed:
+    - contents_pillar: mail_aliases
+    - require:
+      - pkg: postfix
 
 # /etc/postfix/access:
 #   file.managed:
