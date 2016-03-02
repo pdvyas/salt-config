@@ -5,7 +5,7 @@ postfix:
     - require:
       - pkg: postfix
       - file: /etc/postfix/main.cf
-      # - file: /etc/aliases
+      - file: /etc/aliases
     - watch:
       - file: /etc/postfix/main.cf
 
@@ -22,20 +22,21 @@ postfix:
     - require:
       - pkg: postfix
 
-# /etc/postfix/access:
-#   file.managed:
-#     - contents_pillar: postfix_access
-#     - require:
-#       - pkg: postfix
+/etc/postfix/access:
+  file.managed:
+    # - contents_pillar: postfix_access
+    - contents: ''
+    - require:
+      - pkg: postfix
 
-# update-access:
-#   cmd.wait:
-#     - name: postmap /etc/postfix/access
-#     - watch:
-#       - file: /etc/postfix/access
+update-access:
+  cmd.wait:
+    - name: postmap /etc/postfix/access
+    - watch:
+      - file: /etc/postfix/access
 
-# update-aliases:
-#   cmd.wait:
-#     - name: newaliases
-#     - watch:
-#       - file: /etc/aliases
+update-aliases:
+  cmd.wait:
+    - name: newaliases
+    - watch:
+      - file: /etc/aliases
