@@ -16,20 +16,20 @@ alias_maps = hash:/etc/aliases
 myorigin = {{ salt['grains.get']('fqdn') }}
 mydestination = {{ pillar['domain'] }}
 
-# smtpd_sasl_auth_enable = yes
-# smtpd_sasl_type = dovecot
-# smtpd_sasl_path = private/auth
-# smtpd_sasl_security_options = noanonymous
-# smtpd_tls_auth_only = yes
+smtpd_sasl_auth_enable = yes
+smtpd_sasl_type = dovecot
+smtpd_sasl_path = private/auth
+smtpd_sasl_security_options = noanonymous
+smtpd_tls_auth_only = yes
 
-# smtpd_tls_cert_file = /etc/letsencrypt/live/storyinmemo.com/fullchain.pem
-# smtpd_tls_key_file = /etc/letsencrypt/live/storyinmemo.com/privkey.pem
-# smtpd_tls_security_level = may
-# smtpd_tls_loglevel = 1
-# smtpd_tls_protocols = !SSLv2, !SSLv3
-# smtpd_tls_ciphers = medium
-# smtp_tls_protocols = !SSLv2, !SSLv3
-# smtp_tls_ciphers = medium
+smtpd_tls_cert_file = /etc/letsencrypt/live/{{ salt['grains.get']('fqdn') }}/fullchain.pem
+smtpd_tls_key_file = /etc/letsencrypt/live/{{ salt['grains.get']('fqdn') }}/privkey.pem
+smtpd_tls_security_level = may
+smtpd_tls_loglevel = 1
+smtpd_tls_protocols = !SSLv2, !SSLv3
+smtpd_tls_ciphers = medium
+smtp_tls_protocols = !SSLv2, !SSLv3
+smtp_tls_ciphers = medium
 
 #relayhost = 
 mynetworks = 127.0.0.0/8
