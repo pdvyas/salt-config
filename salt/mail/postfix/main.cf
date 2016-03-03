@@ -11,9 +11,10 @@ append_dot_mydomain = no
 #delay_warning_time = 4h
 
 myhostname = {{ salt['grains.get']('fqdn') }}
+mydomain = {{ pillar['domain'] }}
 alias_maps = hash:/etc/aliases
 myorigin = {{ salt['grains.get']('fqdn') }}
-mydestination = {{ salt['grains.get']('fqdn') }}
+mydestination = {{ pillar['domain'] }}
 
 # smtpd_sasl_auth_enable = yes
 # smtpd_sasl_type = dovecot
