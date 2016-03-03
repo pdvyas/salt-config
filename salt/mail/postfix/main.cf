@@ -40,7 +40,7 @@ home_mailbox = Maildir/
 #Spammage
 smtpd_delay_reject = yes
 smtpd_helo_required = yes
-# smtpd_sender_restrictions = hash:/etc/postfix/access
+smtpd_sender_restrictions = hash:/etc/postfix/access
 
 smtpd_client_restrictions = 
     reject_rbl_client cbl.abuseat.org
@@ -56,6 +56,6 @@ smtpd_recipient_restrictions =
     permit_sasl_authenticated,
     permit_mynetworks,
     reject_unauth_destination,
-#     check_sender_access hash:/etc/postfix/access
-#     check_policy_service unix:private/greylist
+    check_sender_access hash:/etc/postfix/access
+    # check_policy_service unix:private/greylist
 #     check_policy_service inet:127.0.0.1:10023
