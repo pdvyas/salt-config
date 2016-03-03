@@ -1,5 +1,6 @@
 base:
   '*':
     - common.*
-  'test.lab.pd.io':
+  'mail.lab.pd.io':
     - mail.postfix
+    - letsencrypt
