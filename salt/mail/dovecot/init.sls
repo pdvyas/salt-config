@@ -13,5 +13,6 @@ dovecot:
 /etc/dovecot/dovecot.conf:
   file.managed:
     - source: salt://mail/dovecot/dovecot.conf
+    - template: jinja
     - require:
       - pkg: dovecot-imapd
